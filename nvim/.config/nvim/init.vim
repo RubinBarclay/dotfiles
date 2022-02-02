@@ -23,6 +23,7 @@ Plug 'tpope/vim-rhubarb'
 
 "Colorschemes & icons
 Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
 
 "Language processing
@@ -48,7 +49,7 @@ Plug 'hoob3rt/lualine.nvim'
 call plug#end()
 
 "Set colorscheme
-colorscheme nord
+colorscheme gruvbox
 
 "Map space as leader 
 nnoremap <SPACE> <Nop>
