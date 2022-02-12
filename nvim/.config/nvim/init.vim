@@ -51,6 +51,10 @@ call plug#end()
 "Set colorscheme
 colorscheme gruvbox
 
+"Set transparency
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+
 "Map space as leader 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
@@ -132,7 +136,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 lua << EOF
 require('lualine').setup {
   options = {
-    theme = 'nord',
+    theme = 'gruvbox',
     section_separators = {'', ''},
     component_separators = {'|', '|'}
   }

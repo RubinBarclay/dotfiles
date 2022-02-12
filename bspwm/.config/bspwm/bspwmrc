@@ -2,6 +2,10 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
+# Keyboard mappings/settings
+setxkbmap -model pc104 -layout us,se -option grp:alt_shift_toggle
+xset r rate 450 30
+
 bspc monitor DVI-I-1 -d 1 2 3
 bspc monitor DVI-D-0 -d 4 5 6
 bspc monitor DP-1    -d 7 8 9
@@ -25,8 +29,9 @@ bspc rule -a Screenkey manage=off
 #feh: set wallpaper
 ~/.fehbg &
 
+#dropbox: file sharing
+dropbox start &
+
 #picom: compositor
 killall -9 -qw picom 2>/dev/null; picom &
 
-#setxkbmap: map alt+shift to toggle EN and SV
-setxkbmap -model pc104 -layout us,se -option grp:alt_shift_toggle
