@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# Open nnn as root
+alias N='sudo -E nnn'
+
+# cd on quit (and open in editor mode)
+n () {
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, either remove the "export" as in:
+    #    NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    #    (or, to a custom path: NNN_TMPFILE=/tmp/.lastd)
+    # or, export NNN_TMPFILE after nnn invocation
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    # Open nnn in editor mode
+    nnn -e "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
+export NNN_BMS="c:$HOME/.config;"
+export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
+export NNN_TRASH=1
+export NNN_FCOLORS='dfd6428e00846cf57c6dafd0'
+              # [223 214 66 142 _ 132 108 245 124 109 175 208]
+              # 'df d6 42 8e 00 84 6c f5 7c 6d af d0'
