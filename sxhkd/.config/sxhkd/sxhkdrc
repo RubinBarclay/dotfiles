@@ -8,7 +8,11 @@ super + Return
 
 # program launcher
 super + d
-	dmenu_run
+  rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/forest/scripts/rofi/launcher.rasi
+
+# system launcher
+super + shift + e
+  ~/.config/polybar/forest/scripts/powermenu.sh
 
 # screenshot software
 super + shift + s
@@ -26,15 +30,9 @@ super + Escape
 super + shift + r
 	bspc wm -r
 
-# quit/restart bspwm
-#super + alt + {q,r}
-#	bspc {quit,wm -r}
-
 # close and kill
 super + shift + q
-	bspc node -c
-# super + {_,shift + }w
-	#bspc node -{c,k}
+	bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
 super + m
@@ -53,8 +51,8 @@ super + g
 #
 
 # set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + {t,shift + t,f,shift + f}
+	bspc node -t {tiled,pseudo_tiled,fullscreen,floating}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -96,17 +94,18 @@ super + {o,i}
 #super + {_,shift + }{1-9}
 #	bspc {desktop -f,node -d} '^{1-9}'
 
-# focus on desktop
+# Focus on a desktop
 super + {0-9}
 	bspc desktop -f {0-9}
 
-# send to the given desktop
+# Send to node to a desktop
 super + shift + {0-9}
 	bspc node -d {0-9}
 
-# send to the given desktop and switch to that desktop
+# Send and follow a node to a desktop
 super + control + {0-9}
-	bspc node -d {0-9} && bspc desktop -f {0-9}
+	bspc node -d {0-9} --follow
+	# bspc node -d {0-9} && bspc desktop -f {0-9}
 
 #
 # preselect
@@ -132,13 +131,19 @@ super + control + {0-9}
 # move/resize
 #
 
-# expand a window by moving one of its side outward
-super + control + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+# Expand/contract a window by entering resize mode and moving one of its sides outward/inward
+super + r : {Left,Down,Up,Right}
+    STEP=20; SELECTION={1,2,3,4}; \
+    bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
+    bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
 
-# contract a window by moving one of its side inward
-#super + alt + shift + {h,j,k,l}
-#	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+# # expand a window by moving one of its side outward
+# super + control + {Left,Down,Up,Right}
+# 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# # contract a window by moving one of its side inward
+# super + alt + {Left,Down,Up,Right}
+# 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window
 super + {Left,Down,Up,Right}
