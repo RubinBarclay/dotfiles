@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Open nnn as root
-alias N='sudo -E nnn'
+alias N='sudo -E nnn -e'
 
 # cd on quit (and open in editor mode)
 n () {
@@ -33,9 +33,9 @@ n () {
     fi
 }
 
-export NNN_BMS="c:$HOME/.config;"
+export NNN_BMS="c:$HOME/.config;w:$HOME/code/work/;"
 export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
 export NNN_TRASH=1
-export NNN_FCOLORS='dfd6428e00846cf57c6dafd0'
-              # [223 214 66 142 _ 132 108 245 124 109 175 208]
-              # 'df d6 42 8e 00 84 6c f5 7c 6d af d0'
+export NNN_FCOLORS='dfd6428e00846cf57c6dafd0' # My custom gruvbox scheme (tried my best ;-;)
+                  # [223 214 66 142 _ 132 108 245 124 109 175 208]
+                  # 'df d6 42 8e 00 84 6c f5 7c 6d af d0'

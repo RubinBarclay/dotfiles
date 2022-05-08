@@ -1,4 +1,6 @@
 #! /bin/sh
+
+#Reset all rules
 bspc rule -r "*"
 
 #Keyboard mappings/settings
@@ -33,8 +35,9 @@ bspc config window_gap          12
 
 bspc config automatic_scheme          alternate
 bspc config split_ratio               0.50
-bspc config borderless_monocle        true
+bspc config single_monocle            true
 bspc config gapless_monocle           true
+bspc config borderless_monocle        true
 bspc config focus_follows_pointer     true
 bspc config pointer_follows_focus     true
 bspc config pointer_follows_monitor   true
@@ -46,6 +49,6 @@ bspc config remove_unplugged_monitors true
 
 bspc rule -a Firefox-esr desktop='^4' follow=on
 bspc rule -a Google-chrome desktop='^8' follow=on
-bspc rule -a KeePassXC desktop='^7' follow=on
 bspc rule -a Code desktop='^1' follow=on
+bspc rule -a KeePassXC desktop='^7' follow=on
 bspc rule -a mpv state=fullscreen
