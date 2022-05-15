@@ -21,6 +21,10 @@ killall -9 -qw picom 2>/dev/null; picom &
 #polybar: status bar
 bash ~/.config/polybar/launch.sh --forest &
 
+#redshift: blue light filter
+# BUG config file does not load, the command equivalent is used as a temporary fix.
+redshift -l 59.62:12.72 -O 4200 -b 0.65 -m randr &
+
 #dropbox: file sharing
 dropbox start &
 
