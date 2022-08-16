@@ -3,7 +3,7 @@
 #Reset all rules
 bspc rule -r "*"
 
-#Keyboard mappings/settings
+# Keyboard mappings/settings
 setxkbmap -model pc104 -layout us,se -option grp:alt_shift_toggle
 xset r rate 450 30
 
@@ -23,7 +23,7 @@ bash ~/.config/polybar/launch.sh --forest &
 
 #redshift: blue light filter
 # BUG config file does not load, the command equivalent is used as a temporary fix.
-redshift -l 59.62:12.72 -O 4200 -b 0.65 -m randr &
+redshift -l 59.62:17.72 -t 6400:4200 -b 1.0:0.60 -m randr -P &
 
 #dropbox: file sharing
 dropbox start &
@@ -50,9 +50,10 @@ bspc config remove_disabled_monitors  true
 bspc config remove_unplugged_monitors true
 
 ### Rules
+# --one-shot: Only follow this rule once
 
-bspc rule -a Firefox-esr desktop='^4' follow=on
-bspc rule -a Google-chrome desktop='^8' follow=on
-bspc rule -a Code desktop='^1' follow=on
-bspc rule -a KeePassXC desktop='^7' follow=on
-bspc rule -a mpv state=fullscreen
+bspc rule --add Firefox-esr --one-shot desktop='^4' follow=on
+bspc rule --add Google-chrome --one-shot desktop='^8' follow=on
+bspc rule --add Code --one-shot desktop='^1' follow=on
+bspc rule --add KeePassXC --one-shot desktop='^7' follow=on
+bspc rule --add mpv state=fullscreen

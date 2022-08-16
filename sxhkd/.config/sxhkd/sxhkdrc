@@ -22,15 +22,21 @@ super + shift + s
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# blue light filter
+super + shift + n
+  redshift -x
+  redshift -l 59.62:17.72 -b 0.65:1.0 -t 4000:6000 -m randr
+
+
 #
 # workspaces hotkeys
 #
 
-# Open work programs
-super + F1
-  firefox
-  code
-  keepassxc
+# Open work programs 
+# super + F1 # <- doesn't work
+#   firefox
+#   code
+#   keepassxc
 
 #
 # bspwm hotkeys
@@ -73,10 +79,10 @@ super + ctrl + {m,x,y,z}
 #
 
 # focus the node in the given direction
-#super + {_,shift + }{h,j,k,l}
-super + {Left,Down,Up,Right}
-	bspc node -f {west,south,north,east}
-	#bspc node -{f,s} {west,south,north,east}
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
 super + {p,b,comma,period}
@@ -101,27 +107,18 @@ super + {o,i}
 	bspc wm -h on
 
 # focus or send to the given desktop
-#super + {_,shift + }{1-9}
-#	bspc {desktop -f,node -d} '^{1-9}'
+super + {_,shift + }{0-9}
+	bspc {desktop -f,node -d} {0-9}
 
-# Focus on a desktop
-super + {0-9}
-	bspc desktop -f {0-9}
-
-# Send to node to a desktop
-super + shift + {0-9}
-	bspc node -d {0-9}
-
-# Send and follow a node to a desktop
+# send and follow a node to a desktop
 super + control + {0-9}
 	bspc node -d {0-9} --follow
-	# bspc node -d {0-9} && bspc desktop -f {0-9}
 
 #
 # preselect
 #
 
-# preselect the direction <---- this conflicts with binding above, idk what it does tho
+# preselect the direction
 #super + ctrl + {h,j,k,l}
 #	bspc node -p {west,south,north,east}
 
@@ -141,20 +138,27 @@ super + control + {0-9}
 # move/resize
 #
 
-# Expand/contract a window by entering resize mode and moving one of its sides outward/inward
-super + r : {Left,Down,Up,Right}
-    STEP=20; SELECTION={1,2,3,4}; \
-    bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
-    bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
+# # Only works with tiled windows 
+# # Expand/contract a window by entering resize mode and moving one of its sides outward/inward
+# super + r : {Left,Down,Up,Right}
+#     STEP=20; SELECTION={1,2,3,4}; \
+#     bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
+#     bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
 
-# # expand a window by moving one of its side outward
-# super + control + {Left,Down,Up,Right}
-# 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+# expand a window by moving one of its side outward
+super + control + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+super + control + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-# # contract a window by moving one of its side inward
-# super + alt + {Left,Down,Up,Right}
-# 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+# contract a window by moving one of its side inward
+super + alt + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window
+super + {h,j,k,l}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
