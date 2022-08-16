@@ -35,7 +35,7 @@ window {
 }
 
 prompt {
-    enabled: 						true;
+  enabled: 						true;
 	padding: 						0px 0px 0px 5px;
 	background-color: 				@bga;
 	text-color: 					@fg;
@@ -86,9 +86,9 @@ listview {
 
 mainbox {
     background-color:               @al;
-	border:							0px;
+    border:							0px;
     border-radius:                  0px;
-	border-color:					@ac;
+    border-color:					@ac;
     children:                       [ inputbar, listview ];
     spacing:                       	5px;
     padding:                        5px;
@@ -99,15 +99,19 @@ element {
     text-color:                     @fg;
     orientation:                    horizontal;
     border-radius:                  0px;
-	padding: 						8px 8px 8px -20px;
+    padding: 						8px 8px 8px -20px;
 }
 
 element-icon {
+    background-color:               @al;
+    text-color:                     inherit;
     size:                           24px;
     border:                         0px;
 }
 
 element-text {
+    background-color:               @al;
+    text-color:                     inherit;
     expand:                         true;
     horizontal-align:               0;
     vertical-align:                 0.5;
