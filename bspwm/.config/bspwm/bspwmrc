@@ -22,8 +22,9 @@ killall -9 -qw picom 2>/dev/null; picom &
 bash ~/.config/polybar/launch.sh --forest &
 
 #redshift: blue light filter
-# BUG config file does not load, the command equivalent is used as a temporary fix.
-redshift -l 59.62:17.72 -t 6400:4200 -b 1.0:0.60 -m randr -P &
+# BUG redshift.conf does not load, the command equivalent is used as a temporary fix.
+killall redshift &
+redshift -l 59.62:17.72 -t 6400:4500 -b 1.0:0.75 -m randr -P &
 
 #dropbox: file sharing
 dropbox start &
