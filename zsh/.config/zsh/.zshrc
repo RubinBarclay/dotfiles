@@ -69,22 +69,19 @@ bindkey "^j" down-line-or-beginning-search # Down
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f $ZDOTDIR/completion/_fnm ] && fpath+="$ZDOTDIR/completion/"
 # export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
-compinit
+# compinit
 
 # # Edit line in vim with ctrl-e:
 # autoload edit-command-line; zle -N edit-command-line
 # bindkey '^e' edit-command-line
-
-#Keyboard mappings/settings
-setxkbmap -model pc104 -layout us,se -option grp:alt_shift_toggle
-xset r rate 450 30
 
 # Global environment variables
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
-export PAGER="most"
+export PAGER="nvim +Man!" # Use nvim as pager
+# export PAGER="most"
 
 # # For QT Themes
 # export QT_QPA_PLATFORMTHEME=qt5ct

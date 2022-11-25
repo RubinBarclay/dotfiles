@@ -1,5 +1,7 @@
 [user]
 	name = Rubin Barclay
 	email = 63505731+RubinBarclay@users.noreply.github.com
+; [core]
+;   pager = $PAGER
 [credential]
 	helper = cache
